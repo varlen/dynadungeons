@@ -197,7 +197,7 @@ one_shot = true
 wait_time = 3.0
 one_shot = true
 
-[node name="SoundEffects" type="Node" parent="."]
+[node name="SoundEffects" type="Node2D" parent="."]
 
 [node name="bombdrop" type="AudioStreamPlayer2D" parent="SoundEffects"]
 stream = ExtResource( 4 )
