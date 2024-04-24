@@ -179,4 +179,5 @@ ui_cancel={
 
 [rendering]
 
+quality/driver/driver_name="GLES2"
 quality/dynamic_fonts/use_oversampling=false
