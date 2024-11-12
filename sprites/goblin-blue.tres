@@ -1,16 +1,90 @@
-[gd_resource type="SpriteFrames" load_steps=1 format=2]
+[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://cbbk6ecyofmyl"]
 
-[ext_resource path="res://sprites/goblin-blue/idle-down.png" type="Texture" id=1]
-[ext_resource path="res://sprites/goblin-blue/idle-up.png" type="Texture" id=2]
-[ext_resource path="res://sprites/goblin-blue/idle-side.png" type="Texture" id=3]
-[ext_resource path="res://sprites/goblin-blue/walk-down1.png" type="Texture" id=4]
-[ext_resource path="res://sprites/goblin-blue/walk-down2.png" type="Texture" id=5]
-[ext_resource path="res://sprites/goblin-blue/walk-up1.png" type="Texture" id=6]
-[ext_resource path="res://sprites/goblin-blue/walk-up2.png" type="Texture" id=7]
-[ext_resource path="res://sprites/goblin-blue/walk-side1.png" type="Texture" id=8]
-[ext_resource path="res://sprites/goblin-blue/walk-side2.png" type="Texture" id=9]
-[ext_resource path="res://sprites/goblin-blue/walk-side3.png" type="Texture" id=10]
+[ext_resource type="Texture2D" uid="uid://coa4mx3pdp4fr" path="res://sprites/goblin-blue/idle-down.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://6plcyxbrnc18" path="res://sprites/goblin-blue/idle-up.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://bvljhftkhkjog" path="res://sprites/goblin-blue/idle-side.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://c04x43mdngblk" path="res://sprites/goblin-blue/walk-down1.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://dkw0kvbsjuugj" path="res://sprites/goblin-blue/walk-down2.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://dg3b5mqh1bb00" path="res://sprites/goblin-blue/walk-up1.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://c1vmd68gjr23u" path="res://sprites/goblin-blue/walk-up2.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://crsxqv0w4rsnd" path="res://sprites/goblin-blue/walk-side1.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://3k5e2d7frxgd" path="res://sprites/goblin-blue/walk-side2.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://bkcugudtr1601" path="res://sprites/goblin-blue/walk-side3.png" id="10"]
 
 [resource]
-
-frames = [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1")
+}],
+"loop": true,
+"name": &"down_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9")
+}],
+"loop": true,
+"name": &"side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3")
+}],
+"loop": true,
+"name": &"side_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2")
+}],
+"loop": true,
+"name": &"up_idle",
+"speed": 5.0
+}]

@@ -9,17 +9,18 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-extends KinematicBody2D
+extends CharacterBody2D
 
 ### Variables ###
+var is_player = true
 
 ## Nodes
-onready var gameover = get_node("/root/World/Gameover")
-onready var level = get_node("/root/World/Level")
+@onready var gameover = get_node("/root/World/Gameover")
+@onready var level = get_node("/root/World/Level")
 
 ## Member variables
-export var id = 1 # Player ID, used to reference the scene
-export var charname = "goblin-brown" # Name of the char sprite
+@export var id = 1 # Player ID, used to reference the scene
+@export var charname = "goblin-brown" # Name of the char sprite
 var dead = false # Is the player dead for good?
 
 var active_bombs = [] # List of active bombs dropped by this player
@@ -155,7 +156,7 @@ func process_explosions():
 
 func process_gameover():
 	if gameover.is_visible() and Input.is_action_pressed("ui_accept"):
-		get_tree().change_scene_to(global.menu_scene)
+		get_tree().change_scene_to_packed(global.menu_scene)
 
 ## Actions
 
@@ -163,7 +164,7 @@ func place_bomb():
 	"""Instance a bomb and place it on the tile where the player stands.
 	Bombs are added as children to the bomb manager.
 	"""
-	var bomb = global.bomb_scene.instance()
+	var bomb = global.bomb_scene.instantiate()
 	level.bomb_manager.add_child(bomb)
 	# Define position and update the bomb's discrete tilemap pos member var
 	bomb.set_pos_and_update(level.tile_center_position(self.get_position()))
@@ -231,7 +232,7 @@ func _on_TimerRespawn_timeout():
 	spot and make it temporarily invincible.
 	"""
 	# Resurrect the player in its original spot as it still has lives
-	set_position(level.map_to_world(global.PLAYER_DATA[id - 1].tile_pos))
+	set_position(level.map_to_local(global.PLAYER_DATA[id - 1].tile_pos))
 	get_node("CharSprite").show()
 	# Start processing input again
 	set_physics_process(true)
@@ -253,7 +254,7 @@ func _on_ActionAnimations_finished(_anim_name):
 
 func get_cell_position():
 	"""Return tilemap position"""
-	return level.world_to_map(self.get_position())
+	return level.local_to_map(self.get_position())
 
 func set_tmp_powerup(powerup_type, duration = 5, status_anim = null):
 	"""Define a temporary powerup that affects the player, start corresponding timer

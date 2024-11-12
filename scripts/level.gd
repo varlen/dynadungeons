@@ -14,12 +14,12 @@ extends Node2D
 ### Variables ###
 
 ## Nodes
-onready var map_manager = get_node("MapManager")
-onready var player_manager = get_node("PlayerManager")
-onready var bomb_manager = get_node("BombManager")
-onready var collectible_manager = get_node("CollectibleManager")
-onready var tilemap_destr = map_manager.get_node("Destructible")
-onready var tilemap_indestr = map_manager.get_node("Indestructible")
+@onready var map_manager = get_node("MapManager")
+@onready var player_manager = get_node("PlayerManager")
+@onready var bomb_manager = get_node("BombManager")
+@onready var collectible_manager = get_node("CollectibleManager")
+@onready var tilemap_destr = map_manager.get_node("Destructible")
+@onready var tilemap_indestr = map_manager.get_node("Indestructible")
 
 ## Member variables
 var exploding_bombs = [] # Array of bombs that are currently exploding
@@ -28,14 +28,20 @@ var exploding_bombs = [] # Array of bombs that are currently exploding
 
 func _ready():
 	# Instance players
-	var player
+	
 	for i in range(global.nb_players):
-		player = global.player_scene.instance()
+		print("Instantiating", i)
+		var player : CharacterBody2D = global.player_scene.instantiate()
 		player.id = i+1
 		# Set sprite and position based on player number
 		player.charname = global.PLAYER_DATA[i].charname
-		player.set_position(map_to_world(global.PLAYER_DATA[i].tile_pos))
-		player_manager.add_child(player)
+		player.set_position(map_to_local(global.PLAYER_DATA[i].tile_pos))
+		
+		player_manager.add_child(player)		
+
+		print(player)
+		print(player.position)
+
 
 	# Start music if enabled
 	if global.music:
@@ -48,18 +54,18 @@ func _ready():
 func _input(_event):
 	if Input.is_action_pressed("ui_cancel"):
 		# Quit to main menu
-		get_tree().change_scene_to(global.menu_scene)
+		get_tree().change_scene_to_packed(global.menu_scene)
 
 ### Helpers ###
 
-func map_to_world(map_pos):
+func map_to_local(map_pos):
 	"""Return absolute position of the center of the tile"""
-	return tilemap_destr.map_to_world(map_pos) + global.TILE_OFFSET
+	return tilemap_destr.map_to_local(map_pos) + global.TILE_OFFSET
 
-func world_to_map(world_pos):
+func local_to_map(world_pos):
 	"""Return tilemap position"""
-	return tilemap_destr.world_to_map(world_pos)
+	return tilemap_destr.local_to_map(world_pos)
 
 func tile_center_position(absolute_pos):
 	"""Give the absolute coordinates of the center of the nearest tile"""
-	return map_to_world(world_to_map(absolute_pos))
+	return map_to_local(local_to_map(absolute_pos))

@@ -1,0 +1,11 @@
+res://scenes/menu.tscn
+res://scripts/collectible.gd
+res://scripts/player.gd
+res://scripts/bomb.gd
+res://scripts/global.gd
+res://scenes/world.tscn
+res://scripts/level.gd
+res://sprites/goblin-violet.tres
+res://scenes/player.tscn
+res://sprites/goblin-brown.tres
+res://sprites/goblin-blue.tres

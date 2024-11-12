@@ -14,7 +14,7 @@ extends Area2D
 ### Variables ###
 
 ## Nodes
-onready var level = get_node("/root/World/Level")
+@onready var level = get_node("/root/World/Level")
 
 ## Member variables
 var effect = "bomb_increase" # Effect of this collectible object
@@ -24,10 +24,11 @@ var pickable = true # Can it be picked? Prevents picking multiple times
 
 func _ready():
 	# Initalise texture based on the effect
-	get_node("Sprite").set_texture(load("res://sprites/pickups/" + effect + ".png"))
-
+	get_node("Sprite2D").set_texture(load("res://sprites/pickups/" + effect + ".png"))
+	add_to_group("collectible")
+	
 func _on_body_enter(body):
-	if pickable and body is global.player_script:
+	if pickable and body.is_in_group("player"):
 		# Apply effect
 		if effect == "bomb_increase" and body.bomb_quota < global.MAX_BOMBS:
 			body.bomb_quota += 1

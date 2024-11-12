@@ -1,16 +1,89 @@
-[gd_resource type="SpriteFrames" load_steps=1 format=2]
+[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://b1qiqx3mf8fac"]
 
-[ext_resource path="res://sprites/goblin-brown/idle-down.png" type="Texture" id=1]
-[ext_resource path="res://sprites/goblin-brown/idle-up.png" type="Texture" id=2]
-[ext_resource path="res://sprites/goblin-brown/idle-side.png" type="Texture" id=3]
-[ext_resource path="res://sprites/goblin-brown/walk-down1.png" type="Texture" id=4]
-[ext_resource path="res://sprites/goblin-brown/walk-down2.png" type="Texture" id=5]
-[ext_resource path="res://sprites/goblin-brown/walk-up1.png" type="Texture" id=6]
-[ext_resource path="res://sprites/goblin-brown/walk-up2.png" type="Texture" id=7]
-[ext_resource path="res://sprites/goblin-brown/walk-side1.png" type="Texture" id=8]
-[ext_resource path="res://sprites/goblin-brown/walk-side2.png" type="Texture" id=9]
-[ext_resource path="res://sprites/goblin-brown/walk-side3.png" type="Texture" id=10]
+[ext_resource type="Texture2D" uid="uid://5cd2adjncba1" path="res://sprites/goblin-brown/idle-down.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://xufib3c68gtm" path="res://sprites/goblin-brown/idle-up.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://dt2axs1coueh3" path="res://sprites/goblin-brown/idle-side.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://ddqo0deoli4w0" path="res://sprites/goblin-brown/walk-down1.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://b1l0qvcefbbuj" path="res://sprites/goblin-brown/walk-down2.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://cvbiwddtcfs" path="res://sprites/goblin-brown/walk-up1.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://dv3gp2r86ksfr" path="res://sprites/goblin-brown/walk-up2.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://cqngx4g7bm013" path="res://sprites/goblin-brown/walk-side1.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://c53vjx85ugcbe" path="res://sprites/goblin-brown/walk-side2.png" id="9"]
 
 [resource]
-
-frames = [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1")
+}],
+"loop": true,
+"name": &"down_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3")
+}],
+"loop": true,
+"name": &"side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3")
+}],
+"loop": true,
+"name": &"side_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2")
+}],
+"loop": true,
+"name": &"up_idle",
+"speed": 5.0
+}]
