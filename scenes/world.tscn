@@ -12,6 +12,3 @@
 visible = false
 
 [node name="Level" parent="." instance=ExtResource("3")]
-
-[node name="SpawnPoint1" type="Node2D" parent="Level"]
-position = Vector2(49, 49)
