@@ -104,7 +104,7 @@ func process_movement(delta):
 	# can be seen when going diagonally against walls
 	var slide_attempts = 1
 	while collision and slide_attempts > 0:
-		motion = motion.slide(collision.normal)
+		motion = motion.slide(collision.get_normal())
 		collision = move_and_collide(motion)
 		slide_attempts -= 1
 
