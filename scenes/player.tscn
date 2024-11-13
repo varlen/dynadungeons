@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1"]
 [ext_resource type="SpriteFrames" uid="uid://b1qiqx3mf8fac" path="res://sprites/goblin-brown.tres" id="2"]
-[ext_resource type="SpriteFrames" path="res://sprites/death-anim.tres" id="3"]
+[ext_resource type="SpriteFrames" uid="uid://rsw6y3slvct4" path="res://sprites/death-anim.tres" id="3"]
 [ext_resource type="AudioStream" uid="uid://dpgywoxgbgnhq" path="res://sounds/bombdrop.wav" id="4"]
 [ext_resource type="AudioStream" uid="uid://dbyikjjemja8q" path="res://sounds/hahaha.wav" id="5"]
 [ext_resource type="AudioStream" uid="uid://bgf64nqkwgxy2" path="res://sounds/yoohoo.wav" id="6"]

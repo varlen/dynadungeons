@@ -1,16 +1,90 @@
-[gd_resource type="SpriteFrames" load_steps=1 format=2]
+[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://ckkxy35p3853n"]
 
-[ext_resource path="res://sprites/human-orange/idle-down.png" type="Texture2D" id=1]
-[ext_resource path="res://sprites/human-orange/idle-up.png" type="Texture2D" id=2]
-[ext_resource path="res://sprites/human-orange/idle-side.png" type="Texture2D" id=3]
-[ext_resource path="res://sprites/human-orange/walk-down1.png" type="Texture2D" id=4]
-[ext_resource path="res://sprites/human-orange/walk-down2.png" type="Texture2D" id=5]
-[ext_resource path="res://sprites/human-orange/walk-up1.png" type="Texture2D" id=6]
-[ext_resource path="res://sprites/human-orange/walk-up2.png" type="Texture2D" id=7]
-[ext_resource path="res://sprites/human-orange/walk-side1.png" type="Texture2D" id=8]
-[ext_resource path="res://sprites/human-orange/walk-side2.png" type="Texture2D" id=9]
-[ext_resource path="res://sprites/human-orange/walk-side3.png" type="Texture2D" id=10]
+[ext_resource type="Texture2D" uid="uid://bkoaeav5bq343" path="res://sprites/human-orange/idle-down.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://b5gjc3iw45pbr" path="res://sprites/human-orange/idle-up.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://ld34qv21cih1" path="res://sprites/human-orange/idle-side.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://bit6kbwssp2ep" path="res://sprites/human-orange/walk-down1.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://dy4r8g3hkrkbc" path="res://sprites/human-orange/walk-down2.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://gq356vfodh7h" path="res://sprites/human-orange/walk-up1.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://dw0k64cw7e7n5" path="res://sprites/human-orange/walk-up2.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://duxc762y4rq75" path="res://sprites/human-orange/walk-side1.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://bqdf47ffjshmp" path="res://sprites/human-orange/walk-side2.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://cii4uxh3pe3t" path="res://sprites/human-orange/walk-side3.png" id="10"]
 
 [resource]
-
-frames = [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1")
+}],
+"loop": true,
+"name": &"down_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9")
+}],
+"loop": true,
+"name": &"side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3")
+}],
+"loop": true,
+"name": &"side_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2")
+}],
+"loop": true,
+"name": &"up_idle",
+"speed": 5.0
+}]
