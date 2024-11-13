@@ -140,7 +140,13 @@ func find_chain_and_collisions(trigger_bomb, exceptions = []):
 
 	for key in dir:
 		# Cast a ray between the bomb and its maximal range
-		var raycast = space_state.intersect_ray(self.get_position(), self.get_position() + dir[key]*self.bomb_range*global.TILE_SIZE, exceptions, 0x7FFFFFFF, true, true)
+		var point_query_params = PhysicsRayQueryParameters2D.create(
+			self.get_position(),
+			self.get_position() + dir[key]*self.bomb_range*global.TILE_SIZE,
+			0x7FFFFFFF,
+			exceptions
+		)
+		var raycast = space_state.intersect_ray(point_query_params)
 
 		# Check first for other bombs in range that would be chain-triggered
 		while (!raycast.is_empty() and raycast.collider.get_parent() in level.bomb_manager.get_children()):
@@ -233,7 +239,7 @@ func start_animation():
 				else:
 					# Fill intermediate positions with "middle" flames, and end tile with "end" flame
 					for i in range(1, bomb.anim_ranges[key] + 1):
-						var pos = bomb.get_cell_position() + i*dir[key]
+						var pos = bomb.get_cell_position() + i*Vector2i(dir[key])
 						var tile_index
 						if i == bomb.anim_ranges[key]:
 							# Could be split out of the for loop, but then the display is not synced
@@ -241,6 +247,7 @@ func start_animation():
 						else:
 							tile_index = FLAME_LONG_MIDDLE
 						bomb.flame_cells.append({'pos': pos, 'tile': tile_index, 'xflip': xflip, 'yflip': yflip, 'transpose': transpose})
+						# Actual call (layer, coords, source_id, atlas_coords, alternative_tile)
 						level.tilemap_destr.set_cell(pos.x, pos.y, tile_index, xflip, yflip, transpose)
 
 	for pos in self.destruct_cells:
