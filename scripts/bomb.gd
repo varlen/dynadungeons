@@ -248,7 +248,7 @@ func start_animation():
 							tile_index = FLAME_LONG_MIDDLE
 						bomb.flame_cells.append({'pos': pos, 'tile': tile_index, 'xflip': xflip, 'yflip': yflip, 'transpose': transpose})
 						# Actual call (layer, coords, source_id, atlas_coords, alternative_tile)
-						level.tilemap_destr.set_cell(pos.x, pos.y, tile_index, xflip, yflip, transpose)
+						level.tilemap_destr.set_cell(0, pos, tile_index, Vector2i(0,0), 0)
 
 	for pos in self.destruct_cells:
 		# "Exploding" tile ID should be normal tile ID + 1
@@ -259,7 +259,7 @@ func start_animation():
 	for bomb in [self] + self.chained_bombs:
 		bomb.get_node("AnimatedSprite2D").hide()
 		bomb.exploding = true
-		level.tilemap_destr.set_cell(bomb.get_cell_position().x, bomb.get_cell_position().y, FLAME_SOURCE)
+		level.tilemap_destr.set_cell(0, bomb.get_cell_position(), FLAME_SOURCE)
 
 	# Play explosion sound
 	play_sound("explosion" + str(randi() % 2 + 1))
@@ -274,19 +274,21 @@ func update_animation():
 	# Update "branch" tiles first
 	for bomb in [self] + self.chained_bombs:
 		for cell_dict in bomb.flame_cells:
-			level.tilemap_destr.set_cell(cell_dict.pos.x, cell_dict.pos.y, cell_dict.tile + index, cell_dict.xflip, cell_dict.yflip, cell_dict.transpose)
+			# TODO - cell_dict.xflip, cell_dict.yflip, cell_dict.transpose 
+			level.tilemap_destr.set_cell(0, cell_dict.pos, cell_dict.tile + index)
 
 	# Update "source" tiles afterwards to ensure a nice overlap
 	for bomb in [self] + self.chained_bombs:
-		level.tilemap_destr.set_cell(bomb.get_cell_position().x, bomb.get_cell_position().y, FLAME_SOURCE + index)
+		# TODO - flip/transpose
+		level.tilemap_destr.set_cell(0, bomb.get_cell_position(), FLAME_SOURCE + index)
 
 func stop_animation():
 	"""Stop the explosion animation (therefore removing the flame tiles from tilemap_destr)
 	and spawn collectibles randomly where destructible objects were present"""
 	for bomb in [self] + self.chained_bombs:
 		for cell_dict in bomb.flame_cells:
-			level.tilemap_destr.set_cell(cell_dict.pos.x, cell_dict.pos.y, -1)
-		level.tilemap_destr.set_cell(bomb.get_cell_position().x, bomb.get_cell_position().y, -1)
+			level.tilemap_destr.set_cell(0, cell_dict.pos, -1)
+		level.tilemap_destr.set_cell(0, bomb.get_cell_position(), -1)
 
 		# Spawn collectibles randomly based on the rates for each type
 		for pos in bomb.destruct_cells:
@@ -306,7 +308,7 @@ func stop_animation():
 				collectible.effect = global.collectibles.types[index]
 				collectible.set_position(level.map_to_local(pos))
 				level.collectible_manager.add_child(collectible)
-			level.tilemap_destr.set_cell(pos.x, pos.y, -1)
+			level.tilemap_destr.set_cell(0 , pos, -1)
 
 ## Helpers
 
