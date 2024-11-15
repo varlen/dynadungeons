@@ -60,7 +60,7 @@ func _input(_event):
 
 func map_to_local(map_pos):
 	"""Return absolute position of the center of the tile"""
-	return tilemap_destr.map_to_local(map_pos) + global.TILE_OFFSET
+	return tilemap_destr.map_to_local(map_pos)
 
 func local_to_map(world_pos):
 	"""Return tilemap position"""
