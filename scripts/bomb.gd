@@ -14,10 +14,11 @@ extends Node2D
 ### Variables ###
 
 ## Consts
-const dir = { "up": Vector2(0, -1),
-			  "down": Vector2(0, 1),
-			  "left": Vector2(-1, 0),
-			  "right": Vector2(1, 0) }
+const dir = { "up": Vector2i.UP,
+			  "down": Vector2i.DOWN,
+			  "left": Vector2i.LEFT,
+			  "right": Vector2i.RIGHT }
+			
 # Tile IDs in the tilemap
 const FLAME_SOURCE = 8
 const FLAME_SMALL = 9
@@ -142,7 +143,7 @@ func find_chain_and_collisions(trigger_bomb, exceptions = []):
 		# Cast a ray between the bomb and its maximal range
 		var point_query_params = PhysicsRayQueryParameters2D.create(
 			self.get_position(),
-			self.get_position() + dir[key]*self.bomb_range*global.TILE_SIZE,
+			self.get_position() + Vector2(dir[key])*self.bomb_range*global.TILE_SIZE,
 			0x7FFFFFFF,
 			exceptions
 		)
@@ -160,7 +161,7 @@ func find_chain_and_collisions(trigger_bomb, exceptions = []):
 				bomb_found.get_node("AnimatedSprite2D/AnimationPlayer").stop()
 			# Add found bomb as an exception and cast a new ray to check for other targets in range of the triggered bomb
 			exceptions.append(raycast.collider)
-			raycast = space_state.intersect_ray(self.get_position(), self.get_position() + dir[key]*self.bomb_range*global.TILE_SIZE, exceptions, 0x7FFFFFFF, false, true)
+			raycast = space_state.intersect_ray(self.get_position(), self.get_position() + Vector2(dir[key])*self.bomb_range*global.TILE_SIZE, exceptions, 0x7FFFFFFF, false, true)
 
 		if raycast.is_empty():
 			# No collision in range, so full range for the animation
@@ -235,7 +236,8 @@ func start_animation():
 					# Display a "small" flame
 					var pos = bomb.get_cell_position() + dir[key]
 					bomb.flame_cells.append({'pos': pos, 'tile': FLAME_SMALL, 'xflip': xflip, 'yflip': yflip, 'transpose': transpose})
-					level.tilemap_destr.set_cell(pos.x, pos.y, FLAME_SMALL, xflip, yflip, transpose)
+					# TODO - xflip,yflip,transpose
+					level.tilemap_destr.set_cell(0, pos, FLAME_SMALL, Vector2i.ZERO, 0)
 				else:
 					# Fill intermediate positions with "middle" flames, and end tile with "end" flame
 					for i in range(1, bomb.anim_ranges[key] + 1):
@@ -248,11 +250,11 @@ func start_animation():
 							tile_index = FLAME_LONG_MIDDLE
 						bomb.flame_cells.append({'pos': pos, 'tile': tile_index, 'xflip': xflip, 'yflip': yflip, 'transpose': transpose})
 						# Actual call (layer, coords, source_id, atlas_coords, alternative_tile)
-						level.tilemap_destr.set_cell(0, pos, tile_index, Vector2i(0,0), 0)
+						level.tilemap_destr.set_cell(0, pos, tile_index, Vector2i.ZERO, 0)
 
 	for pos in self.destruct_cells:
 		# "Exploding" tile ID should be normal tile ID + 1
-		level.tilemap_destr.set_cell(pos.x, pos.y, level.tilemap_destr.get_cell(pos.x, pos.y) + 1)
+		level.tilemap_destr.set_cell(0, pos, level.tilemap_destr.get_cell_source_id(0, pos) + 1, Vector2i.ZERO, 0)
 
 	# Display "source" flame tile where the bomb is, and hide bomb
 	# This is done in a separate loop to make sure source flames override branches
